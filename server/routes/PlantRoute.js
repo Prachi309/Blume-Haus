@@ -9,7 +9,7 @@ const upload=require('../config/cloudinary.js')
 
 
 // const express = require("express");
- // Make sure this is configured correctly
+ 
  router.get("/", async (req, res) => {
   try {
     const userEmail = req.user.email; // Requires authentication middleware
@@ -26,7 +26,7 @@ const upload=require('../config/cloudinary.js')
   }
 });
 
-// POST route - Backend handles Cloudinary upload
+// POST route 
 router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { name, lastWatered, waterFrequency, lightRequirement } = req.body;
@@ -40,7 +40,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       lastWatered,
       waterFrequency,
       lightRequirement,
-      imageUrl: req.file ? req.file.path : null, // Cloudinary URL is stored in req.file.path
+      imageUrl: req.file ? req.file.path : null, 
       userId: user._id,
     });
 
@@ -78,10 +78,10 @@ router.put("/:id", async (req, res) => {
           lastWatered: req.body.lastWatered,
           waterFrequency: req.body.waterFrequency,
           lightRequirement: req.body.lightRequirement,
-          // Add other fields if needed
+     
         },
       },
-      { new: true } // return updated document
+      { new: true } 
     );
 
     if (!updatedPlant) {
@@ -105,7 +105,7 @@ router.put("/:id/water", async (req, res) => {
       {
         $set: {
           lastWatered: new Date(),
-          healthStatus: "Healthy", // Optional: change this if needed
+          healthStatus: "Healthy", 
         },
       },
       { new: true }
