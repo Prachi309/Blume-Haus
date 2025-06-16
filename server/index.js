@@ -39,11 +39,8 @@ app.post('/login', (req,res)=>{
     const {email,password}=req.body
     EmployeeModel.findOne({email:email})
     .then(user=>{
-        
         if(user){
             bcrypt.compare(password,user.password,(err,response)=>{
-                
-                    
                 if(response)
                     {
                         const token= jwt.sign({email: user.email},process.env.JWT_SECRET_KEY, {expiresIn: "1d"})
