@@ -49,8 +49,8 @@ app.post('/login', (req,res)=>{
                         const token= jwt.sign({email: user.email},process.env.JWT_SECRET_KEY, {expiresIn: "1d"})
                         res.cookie("token", token, {
   httpOnly: true,
-  secure: true, // set to true if using HTTPS
-  sameSite: "None", // required for cross-site requests like Vercel frontend
+  secure: true, 
+  sameSite: "None", 
   maxAge: 24 * 60 * 60 * 1000 // 1 day
 });
  
@@ -96,7 +96,7 @@ app.get('/home',verifyUser,(req,res)=>{
     res.json("Success");
 })
 
-// mongoose.connect('mongodb+srv://kspprachi:hbeLLRuOQ8ZdIgFK@plant-care.j97rfdo.mongodb.net/?retryWrites=true&w=majority&appName=Plant-Care')
+
 
 app.use("/api/plants",verifyUser, PlantRoute);
 app.use("/api/auth", authRouter);
